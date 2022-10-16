@@ -25,7 +25,9 @@ export default function App() {
     e.preventDefault();
 
     if (billAmount > 0) {
-      if (cashGiven >= billAmount) {
+      if (cashGiven < 0) {
+        setMessage("Invalid cash Amount");
+      } else if (cashGiven >= billAmount) {
         calCash();
         setOpTable(
           <div className="table">
