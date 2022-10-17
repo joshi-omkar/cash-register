@@ -1,2 +1,4 @@
 # cash-register
-Created with CodeSandbox
+Don't know how to make change, use this. 
+
+Made in ReactJS
