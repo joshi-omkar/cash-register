@@ -4,6 +4,7 @@ import Footer from "./Footer";
 
 export default function App() {
   const [message, setMessage] = useState("");
+  const [isMessage, setIsMessage] = useState(false);
   const [billAmount, setBillAmount] = useState("");
   const [cashGiven, setCashGiven] = useState("");
   const [optable, setOpTable] = useState("");
@@ -27,8 +28,10 @@ export default function App() {
     if (billAmount > 0) {
       if (cashGiven < 0) {
         setMessage("Invalid cash Amount");
+        setIsMessage(true);
       } else if (cashGiven >= billAmount) {
         calCash();
+        setIsMessage(false);
         setOpTable(
           <div className="table">
             <div className="box">Balance Cash : ₹{cashGiven - billAmount}</div>
@@ -53,9 +56,11 @@ export default function App() {
         );
       } else {
         setMessage("Do you wanna wash plates?");
+        setIsMessage(true);
       }
     } else {
       setMessage("Invalid Bill Amount");
+      setIsMessage(true);
     }
   };
 
@@ -97,10 +102,14 @@ export default function App() {
             </button>
           </div>
         </form>
+        <div>
+          {isMessage ? (
+            <div className="message">{message}</div>
+          ) : (
+            <div>{optable}</div>
+          )}
+        </div>
 
-        <div className="message">{message}</div>
-
-        <div>{optable}</div>
         <Footer />
       </div>
     </div>
